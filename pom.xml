@@ -5,7 +5,41 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.houthacker.etl</groupId>
-    <artifactId>lumberjack</artifactId>
+    <artifactId>lumberjack-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <description>Extracts source data from disk and stages it for the Transform phase.</description>
+    <packaging>pom</packaging>
+
+    <description>Parent project for the Lumberjack ETL-pipeline</description>
+    <url>https://github.com/houthacker/lumberjack-parent</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependency versions -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    </properties>
+
+    <build>
+        <!-- Plugin versions -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <!-- Plugins for all child modules -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
