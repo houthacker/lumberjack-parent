@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package lumberjack;
+
+option java_package = "io.hh.lumberjack.shared.proto";
+option java_outer_classname = "RawDataProtos";
+
+import "meta.proto";
+
+message RawData {
+    Meta meta = 1;
+    bytes data = 2;
+}

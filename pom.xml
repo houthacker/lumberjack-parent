@@ -19,9 +19,17 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.release>11</java.release>
 
         <!-- Dependency versions -->
+        <houthacker-codequality.version>0.0.1-SNAPSHOT</houthacker-codequality.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+
+        <!-- Testing dependency versions -->
+        <junit-jupiter-engine.version>5.6.0</junit-jupiter-engine.version>
+        <hamcrest.version>2.2</hamcrest.version>
+
     </properties>
 
     <build>
@@ -38,13 +46,96 @@
 
         <!-- Plugins for all child modules -->
         <plugins>
+
+            <!-- Set java release version for all modules -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <release>11</release>
+                    <release>${java.release}</release>
                 </configuration>
+            </plugin>
+
+            <!-- checkstyle, using configuration from io.houthacker:codequality -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.houthacker</groupId>
+                        <artifactId>codequality</artifactId>
+                        <version>${houthacker-codequality.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>houthacker_checkstyle.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <sourceDirectories>
+                        <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                    </sourceDirectories>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <!--
+                          Phase needs to be `compile` instead of `validate` because otherwise generated code
+                          will exist yet which results in compile errors.
+                        -->
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Testing dependencies -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter-engine.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Dependencies shared between all modules -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -11,5 +11,42 @@
 
     <artifactId>lumberjack-shared</artifactId>
 
+    <properties>
+        <protobuf-java.version>3.11.4</protobuf-java.version>
+        <protoc-jar-maven-plugin.version>3.11.1</protoc-jar-maven-plugin.version>
+    </properties>
 
+    <build>
+        <plugins>
+            <!-- Generates code for .proto files  -->
+            <plugin>
+                <groupId>com.github.os72</groupId>
+                <artifactId>protoc-jar-maven-plugin</artifactId>
+                <version>${protoc-jar-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <protocVersion>${protobuf-java.version}</protocVersion>
+                            <includeStdTypes>true</includeStdTypes>
+                            <inputDirectories>
+                                <include>src/main/proto</include>
+                            </inputDirectories>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf-java.version}</version>
+        </dependency>
+    </dependencies>
 </project>
