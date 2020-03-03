@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package lumberjack;
+
+option java_package = "io.hh.lumberjack.metrics.proto";
+option java_outer_classname = "MetricProtos";
+
+import "google/protobuf/wrappers.proto";
+
+message Metric {
+    /**
+     * The metric name
+     */
+    string name = 1;
+
+    /**
+     * The timestamp of the value observed within this metric, in epoch seconds.
+     */
+    google.protobuf.Int32Value epoch_seconds = 2;
+
+    /**
+     * The value of this metric.
+     */
+    oneof value {
+        double double_value = 10;
+        int64 long_value = 11;
+    }
+
+    /**
+     * Metric tags. At least one tag must exist.
+     */
+    map<string, string> tags = 3;
+}

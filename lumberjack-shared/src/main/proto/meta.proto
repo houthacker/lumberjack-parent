@@ -29,7 +29,7 @@ message Meta {
     /*
      * Time information
      */
-    TimeInfo timeInfo = 2;
+    TimeInfo time_info = 2;
 
     /*
      * The data source, i.e. REDDIT

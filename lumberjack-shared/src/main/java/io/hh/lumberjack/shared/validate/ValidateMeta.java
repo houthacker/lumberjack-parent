@@ -33,7 +33,8 @@ public final class ValidateMeta {
                 builder.addValidationError(new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE,
                         "meta.uuid"));
             }
-            if (meta.getSource() == EnumProtos.Source.UNKNOWN || meta.getSource() == EnumProtos.Source.UNRECOGNIZED) {
+            if (meta.getSource() == EnumProtos.Source.SOURCE_UNSPECIFIED
+                    || meta.getSource() == EnumProtos.Source.UNRECOGNIZED) {
                 builder.addValidationError(new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE,
                         "meta.source"));
             }

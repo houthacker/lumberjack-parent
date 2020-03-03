@@ -11,5 +11,20 @@
 
     <artifactId>lumberjack-metrics</artifactId>
 
+    <build>
+        <plugins>
+            <!-- Generates code for .proto files  -->
+            <plugin>
+                <groupId>com.github.os72</groupId>
+                <artifactId>protoc-jar-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+        </dependency>
+    </dependencies>
 </project>

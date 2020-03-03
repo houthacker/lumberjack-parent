@@ -53,6 +53,6 @@ public final class TestUtil {
     public static MetaProtos.Meta.Builder createValidMeta() {
         final Instant acquired = Instant.now();
         final Instant original = acquired.minus(30, ChronoUnit.DAYS);
-        return createMeta(UUID.randomUUID(), EnumProtos.Source.TWITTER, createTimeInfo(acquired, original));
+        return createMeta(UUID.randomUUID(), EnumProtos.Source.SOURCE_TWITTER, createTimeInfo(acquired, original));
     }
 }

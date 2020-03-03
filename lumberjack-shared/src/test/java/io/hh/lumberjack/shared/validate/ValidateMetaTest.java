@@ -44,7 +44,7 @@ public class ValidateMetaTest {
     public void testValidateWithoutUUID() {
         final Instant acquired = Instant.now();
         final Instant original = acquired.minus(30, ChronoUnit.DAYS);
-        final EnumProtos.Source source = EnumProtos.Source.TWITTER;
+        final EnumProtos.Source source = EnumProtos.Source.SOURCE_TWITTER;
 
         // Create meta
         final MetaProtos.TimeInfo.Builder validTimeInfo = TestUtil.createTimeInfo(acquired, original);
@@ -95,7 +95,7 @@ public class ValidateMetaTest {
     @Test
     public void testValidateWithoutTimeInfo() {
         final UUID uuid = UUID.randomUUID();
-        final EnumProtos.Source source = EnumProtos.Source.TWITTER;
+        final EnumProtos.Source source = EnumProtos.Source.SOURCE_TWITTER;
 
         // Create meta
         final MetaProtos.Meta.Builder metaWithoutTimeInfo = TestUtil.createMeta(uuid, source, null);
@@ -121,7 +121,7 @@ public class ValidateMetaTest {
         final UUID uuid = UUID.randomUUID();
         final Instant acquired = Instant.now();
         final Instant original = acquired.minus(30, ChronoUnit.DAYS);
-        final EnumProtos.Source source = EnumProtos.Source.TWITTER;
+        final EnumProtos.Source source = EnumProtos.Source.SOURCE_TWITTER;
 
         // Create meta
         final MetaProtos.TimeInfo.Builder timeInfoWithoutAcquired = TestUtil.createTimeInfo(null, original);
@@ -166,7 +166,7 @@ public class ValidateMetaTest {
     public void testValidateWithNullOptionalValues() {
         final UUID uuid = UUID.randomUUID();
         final Instant acquired = Instant.now();
-        final EnumProtos.Source source = EnumProtos.Source.TWITTER;
+        final EnumProtos.Source source = EnumProtos.Source.SOURCE_TWITTER;
 
         final MetaProtos.TimeInfo.Builder timeInfo = TestUtil.createTimeInfo(acquired, null);
         final MetaProtos.Meta.Builder meta = TestUtil.createMeta(uuid, source, timeInfo);
