@@ -18,6 +18,12 @@ public class ValidationError {
 
     private final int hash;
 
+    /**
+     * Creates a new {@code ValidationError} of the given type and message.
+     *
+     * @param type The error type.
+     * @param message The (optional) message.
+     */
     public ValidationError(final ValidationErrorType type, final String message) {
         this.type = requireNonNull(type, "Cannot create ValidationError: type is null");
         this.message = message;
@@ -42,6 +48,9 @@ public class ValidationError {
         return message;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -52,10 +61,13 @@ public class ValidationError {
         }
 
         ValidationError that = (ValidationError) o;
-        return type == that.type &&
-                Objects.equals(message, that.message);
+        return type == that.type
+                && Objects.equals(message, that.message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return hash;

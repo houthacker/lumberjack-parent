@@ -25,6 +25,8 @@
         <houthacker-codequality.version>0.0.1-SNAPSHOT</houthacker-codequality.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+        <protobuf-java.version>3.11.4</protobuf-java.version>
+        <protoc-jar-maven-plugin.version>3.11.1</protoc-jar-maven-plugin.version>
 
         <!-- Testing dependency versions -->
         <junit-jupiter-engine.version>5.6.0</junit-jupiter-engine.version>
@@ -40,6 +42,27 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.github.os72</groupId>
+                    <artifactId>protoc-jar-maven-plugin</artifactId>
+                    <version>${protoc-jar-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <configuration>
+                                <protocVersion>${protobuf-java.version}</protocVersion>
+                                <includeStdTypes>true</includeStdTypes>
+                                <inputDirectories>
+                                    <include>src/main/proto</include>
+                                </inputDirectories>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -96,6 +119,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf-java.version}</version>
+            </dependency>
 
             <!-- Testing dependencies -->
             <dependency>
