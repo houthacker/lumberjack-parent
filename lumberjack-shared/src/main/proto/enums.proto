@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package lumberjack;
+
+option java_package = "io.hh.lumberjack.shared.proto";
+option java_outer_classname = "EnumProtos";
+
+enum Source {
+    UNKNOWN = 0;
+    REDDIT = 1;
+    TWITTER = 2;
+}

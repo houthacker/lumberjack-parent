@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package lumberjack;
+
+option java_package = "io.hh.lumberjack.shared.proto";
+option java_outer_classname = "MetaProtos";
+
+import "google/protobuf/wrappers.proto";
+import "enums.proto";
+
+message TimeInfo {
+    /*
+     * When the data element was acquired, in epoch milliseconds.
+     */
+    google.protobuf.Int64Value acquired = 1;
+
+    /*
+     * When the data element was seen or when it happened, in epoch milliseconds.
+     */
+    google.protobuf.Int64Value original = 2;
+}
+
+message Meta {
+    /*
+     * The assigned UUID
+     */
+    bytes uuid = 1;
+
+    /*
+     * Time information
+     */
+    TimeInfo timeInfo = 2;
+
+    /*
+     * The data source, i.e. REDDIT
+     */
+    Source source = 3;
+}
