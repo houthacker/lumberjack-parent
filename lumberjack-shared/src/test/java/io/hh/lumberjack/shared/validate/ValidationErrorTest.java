@@ -9,17 +9,17 @@ public class ValidationErrorTest {
 
     @Test
     public void testConstruct() {
-        final ValidationError error = new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, "message");
+        final ValidationError error = new ValidationError("meta", "message");
 
-        assertThat(error.getType(), is(ValidationErrorType.NULL_NOT_ALLOWED_HERE));
+        assertThat(error.getRuleName(), is("meta"));
         assertThat(error.getMessage(), is("message"));
     }
 
     @Test
     public void testEquality() {
-        final ValidationError e1 = new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, "message");
-        final ValidationError e2 = new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, "message");
-        final ValidationError e3 = new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, null);
+        final ValidationError e1 = new ValidationError("meta", "message");
+        final ValidationError e2 = new ValidationError("meta", "message");
+        final ValidationError e3 = new ValidationError("meta", null);
 
         assertThat(e1.equals(null), is(false));
         assertThat(e1.equals(e1), is(true));

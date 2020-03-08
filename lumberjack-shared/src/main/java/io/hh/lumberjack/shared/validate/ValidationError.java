@@ -12,7 +12,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ValidationError {
 
-    private final ValidationErrorType type;
+    private final String ruleName;
 
     private final String message;
 
@@ -21,22 +21,22 @@ public class ValidationError {
     /**
      * Creates a new {@code ValidationError} of the given type and message.
      *
-     * @param type The error type.
+     * @param ruleName The rule name.
      * @param message The (optional) message.
      */
-    public ValidationError(final ValidationErrorType type, final String message) {
-        this.type = requireNonNull(type, "Cannot create ValidationError: type is null");
+    public ValidationError(final String ruleName, final String message) {
+        this.ruleName = requireNonNull(ruleName, "Cannot create ValidationError: ruleName is null");
         this.message = message;
-        this.hash = Objects.hash(type, message);
+        this.hash = Objects.hash(ruleName, message);
     }
 
     /**
-     * Returns the specific type of the error.
+     * Returns the name of the failed rule.
      *
-     * @return The error type.
+     * @return The rule name.
      */
-    public ValidationErrorType getType() {
-        return type;
+    public String getRuleName() {
+        return ruleName;
     }
 
     /**
@@ -61,7 +61,7 @@ public class ValidationError {
         }
 
         ValidationError that = (ValidationError) o;
-        return type == that.type
+        return ruleName.equals(that.ruleName)
                 && Objects.equals(message, that.message);
     }
 

@@ -22,8 +22,8 @@ message Metric {
      * The value of this metric.
      */
     oneof value {
-        double double_value = 10;
-        int64 long_value = 11;
+        google.protobuf.DoubleValue double_value = 10;
+        google.protobuf.Int64Value long_value = 11;
     }
 
     /**

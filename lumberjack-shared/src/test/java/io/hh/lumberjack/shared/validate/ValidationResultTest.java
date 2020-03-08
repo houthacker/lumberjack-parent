@@ -10,7 +10,7 @@ public class ValidationResultTest {
     @Test
     public void testConstruct() {
         final ValidationResult errorResult = ValidationResult.newBuilder()
-                .addValidationError(new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, "message"))
+                .addValidationError(new ValidationError("meta", "message"))
                 .build();
         final ValidationResult okResult = ValidationResult.newBuilder().build();
 
@@ -20,20 +20,20 @@ public class ValidationResultTest {
         assertThat(errorResult.getErrors().size(), is(1));
 
         final ValidationError error = errorResult.getErrors().get(0);
-        assertThat(error.getType(), is(ValidationErrorType.NULL_NOT_ALLOWED_HERE));
+        assertThat(error.getRuleName(), is("meta"));
         assertThat(error.getMessage(), is("message"));
     }
 
     @Test
     public void testEquality() {
         final ValidationResult r1 = ValidationResult.newBuilder()
-                .addValidationError(new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, "message"))
+                .addValidationError(new ValidationError("meta", "message"))
                 .build();
         final ValidationResult r2 = ValidationResult.newBuilder()
-                .addValidationError(new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, "message"))
+                .addValidationError(new ValidationError("meta", "message"))
                 .build();
         final ValidationResult r3 = ValidationResult.newBuilder()
-                .addValidationError(new ValidationError(ValidationErrorType.NULL_NOT_ALLOWED_HERE, null))
+                .addValidationError(new ValidationError("meta", null))
                 .build();
 
         // .equals

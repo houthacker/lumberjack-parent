@@ -26,5 +26,12 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
         </dependency>
+
+        <!-- Dependencies on own projects -->
+        <dependency>
+            <groupId>io.houthacker.etl</groupId>
+            <artifactId>lumberjack-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
