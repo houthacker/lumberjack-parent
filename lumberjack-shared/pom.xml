@@ -12,7 +12,7 @@
     <artifactId>lumberjack-shared</artifactId>
 
     <properties>
-        <protobuf-java.version>3.11.4</protobuf-java.version>
+        <protobuf-java.version>3.16.3</protobuf-java.version>
         <protoc-jar-maven-plugin.version>3.11.1</protoc-jar-maven-plugin.version>
     </properties>
 
